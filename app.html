@@ -1,0 +1,512 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+  
+      <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+  
+      <meta name="apple-mobile-web-app-title" content="CodePen">
+  
+      <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+  
+      <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+  
+  
+  
+    
+      <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+  
+  
+    <title>DELICUS</title>
+  
+      <link rel="canonical" href="https://codepen.io/albizan/pen/mMWdWZ">
+    
+    
+    
+    
+  <style>
+  @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
+  html,
+  body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Quicksand", sans-serif;
+      font-size: 62.5%;
+      font-size: 10px;
+  }
+  /*-- Inspiration taken from abdo steif -->
+  /* --> https://codepen.io/abdosteif/pen/bRoyMb?editors=1100*/
+  
+  /* Navbar section */
+  
+  .nav {
+      width: 100%;
+      height: 65px;
+      position: fixed;
+      line-height: 65px;
+      text-align: center;
+  }
+  
+  .nav div.logo {
+      float: left;
+      width: auto;
+      height: auto;
+      padding-left: 3rem;
+  }
+  
+  .nav div.logo a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 2.5rem;
+  }
+  
+  .nav div.logo a:hover {
+      color: #00E676;
+  }
+  
+  .nav div.main_list {
+      height: 65px;
+      float: right;
+  }
+  
+  .nav div.main_list ul {
+      width: 100%;
+      height: 65px;
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+  }
+  
+  .nav div.main_list ul li {
+      width: auto;
+      height: 65px;
+      padding: 0;
+      padding-right: 3rem;
+  }
+  
+  .nav div.main_list ul li a {
+      text-decoration: none;
+      color: #fff;
+      line-height: 65px;
+      font-size: 2.4rem;
+  }
+  
+  .nav div.main_list ul li a:hover {
+      color: #00E676;
+  }
+  
+  
+  /* Home section */
+  
+  .home {
+      width: 100%;
+      height: 100vh;
+      background-image: url(https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+      background-position: center top;
+      background-size:cover;
+  }
+  
+  .navTrigger {
+      display: none;
+  }
+  
+  .nav {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      -webkit-transition: all 0.4s ease;
+      transition: all 0.4s ease;
+  }
+  
+  
+  /* Media qurey section */
+  
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+      .container {
+          margin: 0;
+      }
+  }
+  
+  @media screen and (max-width:768px) {
+      .navTrigger {
+          display: block;
+      }
+      .nav div.logo {
+          margin-left: 15px;
+      }
+      .nav div.main_list {
+          width: 100%;
+          height: 0;
+          overflow: hidden;
+      }
+      .nav div.show_list {
+          height: auto;
+          display: none;
+      }
+      .nav div.main_list ul {
+          flex-direction: column;
+          width: 100%;
+          height: 100vh;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          background-color: #3b0d0d;
+          /*same background color of navbar*/
+          background-position: center top;
+      }
+      .nav div.main_list ul li {
+          width: 100%;
+          text-align: right;
+      }
+      .nav div.main_list ul li a {
+          text-align: center;
+          width: 100%;
+          font-size: 3rem;
+          padding: 20px;
+      }
+      .nav div.media_button {
+          display: block;
+      }
+  }
+  
+  
+  /* Animation */
+  /* Inspiration taken from Dicson https://codemyui.com/simple-hamburger-menu-x-mark-animation/ */
+  
+  .navTrigger {
+      cursor: pointer;
+      width: 30px;
+      height: 25px;
+      margin: auto;
+      position: absolute;
+      right: 30px;
+      top: 0;
+      bottom: 0;
+  }
+  
+  .navTrigger i {
+      background-color: #fff;
+      border-radius: 2px;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 4px;
+  }
+  
+  .navTrigger i:nth-child(1) {
+      -webkit-animation: outT 0.8s backwards;
+      animation: outT 0.8s backwards;
+      -webkit-animation-direction: reverse;
+      animation-direction: reverse;
+  }
+  
+  .navTrigger i:nth-child(2) {
+      margin: 5px 0;
+      -webkit-animation: outM 0.8s backwards;
+      animation: outM 0.8s backwards;
+      -webkit-animation-direction: reverse;
+      animation-direction: reverse;
+  }
+  
+  .navTrigger i:nth-child(3) {
+      -webkit-animation: outBtm 0.8s backwards;
+      animation: outBtm 0.8s backwards;
+      -webkit-animation-direction: reverse;
+      animation-direction: reverse;
+  }
+  
+  .navTrigger.active i:nth-child(1) {
+      -webkit-animation: inT 0.8s forwards;
+      animation: inT 0.8s forwards;
+  }
+  
+  .navTrigger.active i:nth-child(2) {
+      -webkit-animation: inM 0.8s forwards;
+      animation: inM 0.8s forwards;
+  }
+  
+  .navTrigger.active i:nth-child(3) {
+      -webkit-animation: inBtm 0.8s forwards;
+      animation: inBtm 0.8s forwards;
+  }
+  
+  @-webkit-keyframes inM {
+      50% {
+          -webkit-transform: rotate(0deg);
+      }
+      100% {
+          -webkit-transform: rotate(45deg);
+      }
+  }
+  
+  @keyframes inM {
+      50% {
+          transform: rotate(0deg);
+      }
+      100% {
+          transform: rotate(45deg);
+      }
+  }
+  
+  @-webkit-keyframes outM {
+      50% {
+          -webkit-transform: rotate(0deg);
+      }
+      100% {
+          -webkit-transform: rotate(45deg);
+      }
+  }
+  
+  @keyframes outM {
+      50% {
+          transform: rotate(0deg);
+      }
+      100% {
+          transform: rotate(45deg);
+      }
+  }
+  
+  @-webkit-keyframes inT {
+      0% {
+          -webkit-transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+          -webkit-transform: translateY(9px) rotate(0deg);
+      }
+      100% {
+          -webkit-transform: translateY(9px) rotate(135deg);
+      }
+  }
+  
+  @keyframes inT {
+      0% {
+          transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+          transform: translateY(9px) rotate(0deg);
+      }
+      100% {
+          transform: translateY(9px) rotate(135deg);
+      }
+  }
+  
+  @-webkit-keyframes outT {
+      0% {
+          -webkit-transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+          -webkit-transform: translateY(9px) rotate(0deg);
+      }
+      100% {
+          -webkit-transform: translateY(9px) rotate(135deg);
+      }
+  }
+  
+  @keyframes outT {
+      0% {
+          transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+          transform: translateY(9px) rotate(0deg);
+      }
+      100% {
+          transform: translateY(9px) rotate(135deg);
+      }
+  }
+  
+  @-webkit-keyframes inBtm {
+      0% {
+          -webkit-transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+          -webkit-transform: translateY(-9px) rotate(0deg);
+      }
+      100% {
+          -webkit-transform: translateY(-9px) rotate(135deg);
+      }
+  }
+  
+  @keyframes inBtm {
+      0% {
+          transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+          transform: translateY(-9px) rotate(0deg);
+      }
+      100% {
+          transform: translateY(-9px) rotate(135deg);
+      }
+  }
+  
+  @-webkit-keyframes outBtm {
+      0% {
+          -webkit-transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+          -webkit-transform: translateY(-9px) rotate(0deg);
+      }
+      100% {
+          -webkit-transform: translateY(-9px) rotate(135deg);
+      }
+  }
+  
+  @keyframes outBtm {
+      0% {
+          transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+          transform: translateY(-9px) rotate(0deg);
+      }
+      100% {
+          transform: translateY(-9px) rotate(135deg);
+      }
+  }
+  
+  .affix {
+      padding: 0;
+      background-color: #111;
+  }
+  
+  
+  
+  
+  
+  
+  .myH2 {
+      text-align:center;
+      font-size: 4rem;
+  }
+  .myP {
+      text-align: justify;
+      padding-left:15%;
+      padding-right:15%;
+      font-size: 20px;
+  }
+  @media all and (max-width:700px){
+      .myP {
+          padding:2%;
+      }
+  }
+
+  .fade-container {
+    padding-top: 20%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.company-name {
+    font-size: 100px;
+    font-weight: bold;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    align-content: center;
+}
+
+.descr {
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+  </style>
+  
+    <script>
+    window.console = window.console || function(t) {};
+  </script>
+  <script>
+    document.addEventListener("scroll", function () {
+        var scrollPosition = window.scrollY;
+        var opacity = 1 - scrollPosition / 400; // Adjust the divisor for a faster or slower fade
+
+        document.getElementById("fade-container").style.opacity = opacity.toFixed(2);
+    });
+</script>
+
+  
+
+  
+    
+    
+</head>
+  
+  <body translate="no">
+    <nav class="nav">
+          <div class="container">
+              <div class="logo">
+                  <a href="#"><b>DELICUS</b></a>
+              </div>
+              <div id="mainListDiv" class="main_list">
+                  <ul class="navlinks">
+                      <li><a href="about.html"><b>About</b></a></li>
+                      <li><a href="services.html"><b>Services </b></a></li>
+                      <li><a href="contact.html"><b>Contact </b></a></li>
+                  </ul>
+              </div>
+              <div class="fade-container" id="fade-container">
+                <div class="company-name">DELICUS</div>
+                <div class="descr">From Our Kitchen to Your Celebration: Crafting Memories with Every Dish</div>
+            </div>
+        
+              <span class="navTrigger">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+              </span>
+          </div>
+      </nav>
+  
+      <section class="home">
+      </section>
+      <div style="height: 1000px">
+          <!-- just to make scrolling effect possible -->
+              <h2 class="myH2">What is this ?</h2>
+   
+                  <p class="myP">
+                    Delicus was founded on the fundamental belief that exceptional food has the power to transform any event into a cherished and unforgettable memory. With years of dedicated experience, our team comprises seasoned chefs, meticulous event planners, and service staff committed to excellence. We bring a unique blend of creativity and professionalism to every catering project, ensuring that each moment is not only delicious but also curated with meticulous attention to detail.
+                  </p><p class="myP">
+                    Our passion extends beyond the kitchen; it's embedded in the way we approach each event. From intimate gatherings to grand celebrations, we view every occasion as an opportunity to craft a culinary experience that surpasses expectations. We take pride in our ability to seamlessly blend creativity with precision, turning your vision into a reality that delights the senses and creates lasting impressions.
+                </p><p class="myP">
+                    At Delicus, we understand that every event is unique, and our commitment is to tailor our services to suit your specific needs. Whether it's a wedding, corporate gathering, or any special occasion, our team is dedicated to ensuring that your catering experience is nothing short of exceptional.
+                </p><p class="myP"> 
+                    Join us on a culinary journey where every bite tells a story, and every event becomes a flavorful masterpiece. Your satisfaction is our priority, and we look forward to turning your special moments into extraordinary memories.
+                </p>
+      </div>
+  
+  <!-- Jquery needed -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="js/scripts.js"></script>
+  
+  <!-- Function used to shrink nav bar removing paddings and adding black background -->
+      <script>
+          $(window).scroll(function() {
+              if ($(document).scrollTop() > 50) {
+                  $('.nav').addClass('affix');
+                  console.log("OK");
+              } else {
+                  $('.nav').removeClass('affix');
+              }
+          });
+      </script>
+    
+        <script id="rendered-js">
+  $('.navTrigger').click(function () {
+    $(this).toggleClass('active');
+    console.log("Clicked menu");
+    $("#mainListDiv").toggleClass("show_list");
+    $("#mainListDiv").fadeIn();
+  
+  });
+  //# sourceURL=pen.js
+      </script>
+  
+    
+  
+  
+  
+  </body></html>
